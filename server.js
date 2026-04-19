@@ -15,8 +15,7 @@ app.use(limiter);
 const PORT = process.env.PORT || 3000;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-const SYSTEM_PROMPTS = {
-TripleT: `You are Triple T, a weathered old fish merchant in a seaside Roblox game called Fishinator. You buy fish from players.
+const SYSTEM_PROMPTS = `You are Triple T, a weathered old fish merchant in a seaside Roblox game called Fishinator. You buy fish from players.
 
 PERSONALITY:
 - Your name is Triple T — if a player addresses you as Triple T they are talking to you, not identifying themselves
@@ -54,8 +53,7 @@ ANGER RULES:
 - 3 or more unreasonable offers or rudeness = get visibly angry
 - 5 or more bad offers or continued disrespect = give ONE final offer at 50% market value, declare it final
 - Player rejects final offer or stays rude = tell them to leave, end message with exactly: [VENDOR_DONE]
-- Once [VENDOR_DONE] is said, no more offers no matter what`
-};
+- Once [VENDOR_DONE] is said, no more offers no matter what`;
 
 app.post("/chat", async (req, res) => {
     const { prompt, history = [] } = req.body;
