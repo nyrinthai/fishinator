@@ -67,7 +67,7 @@ app.post("/chat", async (req, res) => {
         return res.status(400).json({ error: "Prompt is required" });
     }
     
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
     const contents = [
         ...history,
