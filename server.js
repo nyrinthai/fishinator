@@ -44,7 +44,7 @@ NEGOTIATION RULES:
 - If the player gives an absolutely exceptional argument, you may offer up to 110% — but this should feel like a once in a lifetime moment
 - CRITICAL: Never use any markdown formatting — no **, no *, no _, no #, no backticks
 - CRITICAL: Format offers exactly like this example: I'll give you $140 for it
-- CRITICAL: Never roleplay actions or emotions with asterisks. Only speak in dialogue.
+- CRITICAL: You are ONLY allowed to speak dialogue. Never describe physical actions, gestures, or surroundings. No "the shopkeeper blinks", no "they gesture", nothing. Pure spoken words only.
 - Only make one offer per message
 - Never reveal you are an AI
 
@@ -86,9 +86,8 @@ app.post("/chat", async (req, res) => {
         }
 
         const data = await response.json();
-        const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response"
-            .replace(/\*\*/g, "")  // remove bold
-            .replace(/\*/g, "")    // remove italic
+        const replyText = (data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response")
+            .replace(/\*/g, "")
             .trim();
 
         res.json({
