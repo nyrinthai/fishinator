@@ -83,6 +83,9 @@ app.post("/chat", async (req, res) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                system_instruction: {
+                    parts: [{ text: SYSTEM_PROMPT }]
+                },
                 contents,
             })
         });
@@ -94,7 +97,7 @@ app.post("/chat", async (req, res) => {
         const data = await response.json();
         const replyText = (data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response")
             .replace(/\*/g, "")
-            .replace(/\$(\d+)/g, "[OFFER:$1]")
+            .replace(/\$(\d+(?:\.\d+)?)/g, "[OFFER:$1]")
             .trim();
 
         res.json({
