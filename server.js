@@ -88,6 +88,7 @@ app.post("/chat", async (req, res) => {
         const data = await response.json();
         const replyText = (data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response")
             .replace(/\*/g, "")
+            .replace(/\$(\d+)/g, "[OFFER:$1]")
             .trim();
 
         res.json({
